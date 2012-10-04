@@ -17,17 +17,27 @@
 	<?php echo CHtml::encode($data->month); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('year')); ?>:</b>
+	<?php echo CHtml::encode($data->year); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('hours')); ?>:</b>
 	<?php echo CHtml::encode($data->hours); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('from')); ?>:</b>
+	<?php echo CHtml::encode($data->from); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('project')); ?>:</b>
 	<?php echo CHtml::encode($data->project); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('user')); ?>:</b>
 	<?php echo CHtml::encode($data->user); ?>
 	<br />
 
+	*/ ?>
 
 </div>

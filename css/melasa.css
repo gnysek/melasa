@@ -6,6 +6,11 @@
 .hour .time {
 	display: absolute;
 }
+.hour:hover{
+	background-image: url('foundation/images/foundation/orbit/bullets.jpg');
+	background-repeat: no-repeat;
+	background-position: -8px 17px;
+}
 .project {
 	position: absolute;
 	width: 85%;

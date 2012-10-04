@@ -7,13 +7,15 @@
  * @property integer $id
  * @property integer $day
  * @property integer $month
+ * @property integer $year
  * @property integer $hours
+ * @property integer $from
  * @property integer $project
  * @property integer $user
  *
  * The followings are the available model relations:
- * @property Users $user0
  * @property Projects $project0
+ * @property Users $user0
  */
 class Asa extends CActiveRecord
 {
@@ -43,11 +45,11 @@ class Asa extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('day, month, hours', 'required'),
-			array('day, month, hours, project, user', 'numerical', 'integerOnly'=>true),
+			array('day, month, year, hours, from', 'required'),
+			array('day, month, year, hours, from, project, user', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, day, month, hours, project, user', 'safe', 'on'=>'search'),
+			array('id, day, month, year, hours, from, project, user', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,8 +61,8 @@ class Asa extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user0' => array(self::BELONGS_TO, 'Users', 'user'),
 			'project0' => array(self::BELONGS_TO, 'Projects', 'project'),
+			'user0' => array(self::BELONGS_TO, 'Users', 'user'),
 		);
 	}
 
@@ -73,7 +75,9 @@ class Asa extends CActiveRecord
 			'id' => 'ID',
 			'day' => 'Day',
 			'month' => 'Month',
+			'year' => 'Year',
 			'hours' => 'Hours',
+			'from' => 'From',
 			'project' => 'Project',
 			'user' => 'User',
 		);
@@ -93,7 +97,9 @@ class Asa extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('day',$this->day);
 		$criteria->compare('month',$this->month);
+		$criteria->compare('year',$this->year);
 		$criteria->compare('hours',$this->hours);
+		$criteria->compare('from',$this->from);
 		$criteria->compare('project',$this->project);
 		$criteria->compare('user',$this->user);
 

@@ -28,9 +28,21 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'year'); ?>
+		<?php echo $form->textField($model,'year'); ?>
+		<?php echo $form->error($model,'year'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'hours'); ?>
 		<?php echo $form->textField($model,'hours'); ?>
 		<?php echo $form->error($model,'hours'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'from'); ?>
+		<?php echo $form->textField($model,'from'); ?>
+		<?php echo $form->error($model,'from'); ?>
 	</div>
 
 	<div class="row">

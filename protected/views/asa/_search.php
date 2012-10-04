@@ -27,8 +27,18 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'year'); ?>
+		<?php echo $form->textField($model,'year'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'hours'); ?>
 		<?php echo $form->textField($model,'hours'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'from'); ?>
+		<?php echo $form->textField($model,'from'); ?>
 	</div>
 
 	<div class="row">
