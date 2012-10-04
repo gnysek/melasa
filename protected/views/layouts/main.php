@@ -58,7 +58,15 @@
 			<section>
 				<ul class="left">
 					<li class="active"><a href="<?= CHtml::normalizeUrl(array('/site')) ?>">Week view</a></li>
-					<li><a href="<?= CHtml::normalizeUrl(array('/projects')) ?>">Projects CRUD</a></li>
+					<li class="has-dropdown">
+						<a href="#">Projects CRUD</a>
+						
+						<ul class="dropdown">
+							<li><a href="<?= CHtml::normalizeUrl(array('/projects')) ?>">View</a></li>
+							<li><a href="<?= CHtml::normalizeUrl(array('/projects/create')) ?>">Create</a></li>
+							<li><a href="<?= CHtml::normalizeUrl(array('/projects/admin')) ?>">Admin</a></li>
+						</ul>
+					</li>
 					<li class="has-dropdown">
 						<a href="#">ASA CRUD</a>
 

@@ -9,10 +9,15 @@ $this->menu = array(
 	array('label' => 'Check month', 'url' => array('index')),
 	array('label' => 'Profile', 'url' => array('index')),
 );
+
+$this->breadcrumbs = array(
+	'Week view for week ' . date('W'),
+);
 ?>
 
-<?php $this->widget('WeekDay', array(
-//	'week' => 1,
-//	'days' => 7,
-	'results' => $asa
-)); ?>
+<?php
+
+$this->widget('WeekDay', array(
+	'results' => $asa,
+));
+?>

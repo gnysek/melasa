@@ -1,6 +1,7 @@
 <?php
 /* @var $this ProjectsController */
 /* @var $data Projects */
+$md = new CMarkdown();
 ?>
 
 <div class="view">
@@ -14,8 +15,8 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('wiki')); ?>:</b>
-	<?php echo CHtml::encode($data->wiki); ?>
-	<br />
+	<?php echo $md->transform($data->wiki); ?>
+	<hr />
 
 
 </div>
