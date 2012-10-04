@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 04 Paź 2012, 13:43
+-- Czas wygenerowania: 04 Paź 2012, 14:54
 -- Wersja serwera: 5.5.24-log
 -- Wersja PHP: 5.3.13
 
@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `asa` (
   `day` int(2) NOT NULL,
   `month` int(2) NOT NULL,
   `year` int(4) NOT NULL,
+  `week` int(2) NOT NULL,
   `hours` int(1) NOT NULL,
   `from` int(2) NOT NULL,
   `project` int(10) DEFAULT NULL,
@@ -38,8 +39,8 @@ CREATE TABLE IF NOT EXISTS `asa` (
 -- Zrzut danych tabeli `asa`
 --
 
-INSERT INTO `asa` (`id`, `day`, `month`, `year`, `hours`, `from`, `project`, `user`) VALUES
-(1, 2, 10, 2012, 6, 10, 1, 1);
+INSERT INTO `asa` (`id`, `day`, `month`, `year`, `week`, `hours`, `from`, `project`, `user`) VALUES
+(1, 3, 10, 2012, 0, 8, 9, 1, 1);
 
 -- --------------------------------------------------------
 

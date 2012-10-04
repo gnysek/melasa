@@ -8,6 +8,7 @@
  * @property integer $day
  * @property integer $month
  * @property integer $year
+ * @property integer $week
  * @property integer $hours
  * @property integer $from
  * @property integer $project
@@ -45,11 +46,11 @@ class Asa extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('day, month, year, hours, from', 'required'),
-			array('day, month, year, hours, from, project, user', 'numerical', 'integerOnly'=>true),
+			array('day, month, year, week, hours, from', 'required'),
+			array('day, month, year, week, hours, from, project, user', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, day, month, year, hours, from, project, user', 'safe', 'on'=>'search'),
+			array('id, day, month, year, week, hours, from, project, user', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -76,6 +77,7 @@ class Asa extends CActiveRecord
 			'day' => 'Day',
 			'month' => 'Month',
 			'year' => 'Year',
+			'week' => 'Week',
 			'hours' => 'Hours',
 			'from' => 'From',
 			'project' => 'Project',
@@ -98,6 +100,7 @@ class Asa extends CActiveRecord
 		$criteria->compare('day',$this->day);
 		$criteria->compare('month',$this->month);
 		$criteria->compare('year',$this->year);
+		$criteria->compare('week',$this->week);
 		$criteria->compare('hours',$this->hours);
 		$criteria->compare('from',$this->from);
 		$criteria->compare('project',$this->project);

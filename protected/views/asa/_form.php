@@ -34,6 +34,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'week'); ?>
+		<?php echo $form->textField($model,'week'); ?>
+		<?php echo $form->error($model,'week'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'hours'); ?>
 		<?php echo $form->textField($model,'hours'); ?>
 		<?php echo $form->error($model,'hours'); ?>

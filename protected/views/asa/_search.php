@@ -32,6 +32,11 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'week'); ?>
+		<?php echo $form->textField($model,'week'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'hours'); ?>
 		<?php echo $form->textField($model,'hours'); ?>
 	</div>

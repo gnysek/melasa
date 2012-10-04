@@ -21,6 +21,10 @@
 	<?php echo CHtml::encode($data->year); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('week')); ?>:</b>
+	<?php echo CHtml::encode($data->week); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('hours')); ?>:</b>
 	<?php echo CHtml::encode($data->hours); ?>
 	<br />
@@ -29,11 +33,11 @@
 	<?php echo CHtml::encode($data->from); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('project')); ?>:</b>
 	<?php echo CHtml::encode($data->project); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('user')); ?>:</b>
 	<?php echo CHtml::encode($data->user); ?>
 	<br />

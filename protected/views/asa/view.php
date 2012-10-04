@@ -25,6 +25,7 @@ $this->menu=array(
 		'day',
 		'month',
 		'year',
+		'week',
 		'hours',
 		'from',
 		'project',
