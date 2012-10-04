@@ -1,0 +1,18 @@
+.small{font-size: 10px;}
+.day-td{padding: 0px; position: relative;}
+.day-td .small{color: black;}
+.hour{display: block; height: 40px; border-bottom: 1px dashed #ccc; position:relative;}
+.hour:last-child{border: none;}
+.hour .time {
+	display: absolute;
+}
+.project {
+	position: absolute;
+	width: 85%;
+	background-color: khaki;
+	border-radius: 5px;
+	text-align: right;
+	right: 0px;
+	padding: 1px 5px 0 0;
+	font-size: 11px;
+}

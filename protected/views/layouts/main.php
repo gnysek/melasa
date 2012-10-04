@@ -1,61 +1,122 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="language" content="en" />
 
-	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
-	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
-	<![endif]-->
+		<!-- Included CSS Files (Compressed) -->
+		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/foundation/stylesheets/foundation.min.css"/>
+		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/foundation/stylesheets/app.css"/>
+		<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/melasa.css"/>
 
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+		<script src="<?php echo Yii::app()->request->baseUrl; ?>/css/foundation/javascripts/modernizr.foundation.js"></script>
 
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-</head>
+		<!-- Included JS Files (Compressed) -->
+		<script src="<?php echo Yii::app()->request->baseUrl; ?>/css/foundation/javascripts/jquery.js"></script>
+		<script src="<?php echo Yii::app()->request->baseUrl; ?>/css/foundation/javascripts/foundation.min.js"></script>
 
-<body>
+		<!-- Initialize JS Plugins -->
+		<script src="<?php echo Yii::app()->request->baseUrl; ?>/css/foundation/javascripts/app.js"></script>
 
-<div class="container" id="page">
+		<?php /*
+		  <!-- IE Fix for HTML5 Tags -->
+		  <!--[if lt IE 9]>
+		  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		  <![endif]-->
 
-	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-	</div><!-- header -->
+		  <?php /*
+		  <!-- blueprint CSS framework -->
+		  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
+		  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
+		  <!--[if lt IE 8]>
+		  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
+		  <![endif]-->
 
-	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'ASA', 'url'=>array('/asa')),
-				array('label'=>'Projects', 'url'=>array('/projects')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
-		)); ?>
-	</div><!-- mainmenu -->
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
+		  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+		  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+		 */ ?>
 
-	<?php echo $content; ?>
+		<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
-	<div class="clear"></div>
+		<script type="text/javascript">
+			$().ready(function(){
+				$(document).foundationTopBar();
+			});
+		</script>
+	</head>
 
-	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
-	</div><!-- footer -->
+	<body>
 
-</div><!-- page -->
+		<nav class="top-bar">
+			<ul>
+				<li class="name"><h1>
+						<a href="<?= CHtml::normalizeUrl(array('/')) ?>"><?php echo CHtml::encode(Yii::app()->name); ?></a>
+					</h1></li>
+				<li class="toggle-topbar"><a href="#"></a></li>
+			</ul>
+			<section>
+				<ul class="left">
+					<li class="active"><a href="<?= CHtml::normalizeUrl(array('/site')) ?>">Week view</a></li>
+					<li><a href="<?= CHtml::normalizeUrl(array('/projects')) ?>">Projects CRUD</a></li>
+					<li class="has-dropdown">
+						<a href="#">ASA CRUD</a>
 
-</body>
+						<ul class="dropdown">
+							<li><a href="<?= CHtml::normalizeUrl(array('/asa')) ?>">View</a></li>
+							<li><a href="<?= CHtml::normalizeUrl(array('/asa/create')) ?>">Create</a></li>
+							<li><a href="<?= CHtml::normalizeUrl(array('/asa/admin')) ?>">Admin</a></li>
+						</ul>
+					</li>
+					<?php if (Yii::app()->user->isGuest): ?>
+						<li><a href="<?= CHtml::normalizeUrl(array('/site/login')) ?>">Login</a></li>
+					<?php else: ?>
+						<li><a href="<?= CHtml::normalizeUrl(array('/site/logout')) ?>">Logout (<?= Yii::app()->user->name ?>)</a></li>
+					<?php endif; ?>
+				</ul>
+			</section>
+		</nav>
+
+		<?php /*
+		  <div id="mainmenu">
+		  $this->widget('zii.widgets.CMenu', array(
+		  'items' => array(
+		  array('label' => 'Home', 'url' => array('/site/index')),
+		  array('label' => 'ASA', 'url' => array('/asa')),
+		  array('label' => 'Projects', 'url' => array('/projects')),
+		  array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
+		  array('label' => 'Contact', 'url' => array('/site/contact')),
+		  array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
+		  array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+		  ),
+		  ));
+		  </div><!-- mainmenu -->
+		 */ ?>
+		<?php if (isset($this->breadcrumbs)): ?>
+			<div class="row">
+				<div class="twelve columns">
+					<?php
+					$this->widget('Breadcrumbs', array(
+						'tagName' => 'ul',
+						'activeLinkTemplate' => '<li><a href="{url}">{label}</a></li>',
+						'inactiveLinkTemplate' => '<li><span>{label}</span></li>',
+						'separator' => '',
+						'links' => $this->breadcrumbs,
+					));
+					?><!-- breadcrumbs -->
+				</div>
+			</div>
+		<?php endif ?>
+
+		<?php echo $content; ?>
+
+		<div class="row">
+			<hr/>
+			<div class="ten columns">
+				<p>Copyright &copy; <?php echo date('Y'); ?> by gnysek.pl. All Rights Reserved.<br/><?php echo Yii::powered(); ?>
+				</p>
+			</div><!-- footer -->
+		</div>
+
+	</body>
 </html>
