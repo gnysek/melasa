@@ -27,10 +27,12 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$this->layout='//layouts/column2';
+		$result = ASA::model()->findAll('year = 2012 AND day > 1 AND day < 10 AND month = 10');
+
+		$this->layout = '//layouts/column2';
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$this->render('index', array('asa' => $result));
 	}
 
 	/**
