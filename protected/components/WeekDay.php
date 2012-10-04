@@ -48,7 +48,7 @@ class WeekDay extends CWidget {
 			foreach ($this->results as $r) {
 				/* @var $r ASA */
 				if ($r->day == date('j', $dates[$day]) and $r->month == date('n', $dates[$day]) and $r->year == date('Y', $dates[$day])) {
-					echo '<div class="project" style="height: '. ($r->hours * 40) .'px; top: '. (($r->from - 8) * 40) .'px">undef</div>';
+					echo '<div class="project" style="height: '. ($r->hours * 40) .'px; top: '. (($r->from - 8) * 40) .'px">'. $r->project0->name .'</div>';
 				}
 			}
 

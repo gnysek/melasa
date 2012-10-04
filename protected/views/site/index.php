@@ -2,7 +2,7 @@
 /* @var $this SiteController */
 //$this->pageTitle=Yii::app()->name;
 $this->menu = array(
-	array('label' => 'Report time', 'url' => array('index')),
+	array('label' => 'Report time', 'url' => array('asa/create')),
 	array('label' => 'Request holidays', 'url' => array('index')),
 	array('label' => '', 'itemOptions' => array('class' => 'divider')),
 	array('label' => 'Check your projects', 'url' => array('index')),

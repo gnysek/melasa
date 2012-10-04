@@ -27,7 +27,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$result = ASA::model()->findAll('year = 2012 AND day > 1 AND day < 10 AND month = 10');
+		$result = ASA::model()->findAll('week = :week',array('week'=>date('W')));
 
 		$this->layout = '//layouts/column2';
 		// renders the view file 'protected/views/site/index.php'
