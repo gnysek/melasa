@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 03 Paź 2012, 15:57
+-- Czas wygenerowania: 04 Paź 2012, 13:43
 -- Wersja serwera: 5.5.24-log
 -- Wersja PHP: 5.3.13
 
@@ -24,13 +24,22 @@ CREATE TABLE IF NOT EXISTS `asa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `day` int(2) NOT NULL,
   `month` int(2) NOT NULL,
+  `year` int(4) NOT NULL,
   `hours` int(1) NOT NULL,
+  `from` int(2) NOT NULL,
   `project` int(10) DEFAULT NULL,
   `user` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `project` (`project`),
   KEY `user` (`user`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+
+--
+-- Zrzut danych tabeli `asa`
+--
+
+INSERT INTO `asa` (`id`, `day`, `month`, `year`, `hours`, `from`, `project`, `user`) VALUES
+(1, 2, 10, 2012, 6, 10, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -98,10 +107,17 @@ INSERT INTO `profiles_fields` (`id`, `varname`, `title`, `field_type`, `field_si
 
 CREATE TABLE IF NOT EXISTS `projects` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(10) NOT NULL,
-  `wiki` text,
+  `name` varchar(10) COLLATE utf8_bin NOT NULL,
+  `wiki` text COLLATE utf8_bin,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+
+--
+-- Zrzut danych tabeli `projects`
+--
+
+INSERT INTO `projects` (`id`, `name`, `wiki`) VALUES
+(1, 'Croire', 'To jest pierwszy akapit.\r\nA to drugi.\r\n\r\nA to trzeci.\r\n\r\n*emfaza* **mocna emfaza**\r\n\r\n`kod`\r\n\r\n test\r\n\r\n* Pierwszy element listy.\r\n* Drugi.	\r\n\r\nNagłówek pierwszego poziomu\r\n===========================\r\n\r\nNagłówek drugiego poziomu\r\n-------------------------\r\n\r\n> Cytat');
 
 -- --------------------------------------------------------
 
@@ -142,5 +158,5 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `activkey`, `createt
 -- Ograniczenia dla tabeli `asa`
 --
 ALTER TABLE `asa`
-  ADD CONSTRAINT `asa_ibfk_4` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-  ADD CONSTRAINT `asa_ibfk_3` FOREIGN KEY (`project`) REFERENCES `projects` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+  ADD CONSTRAINT `asa_ibfk_3` FOREIGN KEY (`project`) REFERENCES `projects` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `asa_ibfk_4` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
