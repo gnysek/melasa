@@ -1,13 +1,21 @@
 <?php
 /* @var $this ReportController */
+//$this->pageTitle=Yii::app()->name;
+$this->menu = array(
+	array('label' => 'Report time', 'url' => array('report/create')),
+	array('label' => 'Request holidays', 'url' => array('index')),
+	array('label' => '', 'itemOptions' => array('class' => 'divider')),
+	array('label' => 'Check your projects', 'url' => array('index')),
+	array('label' => 'Check month', 'url' => array('index')),
+	array('label' => 'Profile', 'url' => array('index')),
+);
 
-$this->breadcrumbs=array(
-	'Report',
+$this->breadcrumbs = array(
+	'Week view for week ' . date('W'),
 );
 ?>
-<h1><?php echo $this->id . '/' . $this->action->id; ?></h1>
 
-<p>
-	You may change the content of this page by modifying
-	the file <tt><?php echo __FILE__; ?></tt>.
-</p>
+<?php
+
+$this->widget('WeekDay');
+?>

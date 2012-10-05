@@ -95,6 +95,7 @@
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => 'button success')); ?>
+		<?php echo Chtml::link('Cancel',array('/'),array('class'=>'button alert')); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>

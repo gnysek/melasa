@@ -21,6 +21,11 @@ class WeekDay extends CWidget
 		$today = -1;
 		$dates = array();
 
+		if (empty($this->results))
+		{
+			$this->results = ASA::model()->findAll('week = :week', array('week' => date($this->week)));
+		}
+
 		echo '<table style="width: 100%;">';
 		echo '<thead>';
 		echo '<tr>';
@@ -45,12 +50,20 @@ class WeekDay extends CWidget
 		echo '<tr>';
 		for ($day = 0; $day < $this->days; $day++)
 		{
+			echo '<td class="small" style="padding: 1px;">';
+			echo CHtml::link('+ Add', array('report/create', 'day' => date('j', $dates[$day]), 'month' => date('n', $dates[$day]), 'year' => date('Y', $dates[$day])));
+			echo '</td>';
+		}
+		echo '</tr>';
+		echo '<tr>';
+		for ($day = 0; $day < $this->days; $day++)
+		{
 			echo '<td class="day-td">';
 			echo '<div class="day-relative">';
 
 			if ($today == $day and (date('H') > 7 and date('H') < 20))
 			{
-				echo '<div style="z-index: 1; display: block; position: absolute; width: 100%; border-bottom: 2px solid gold; top: ' . (((date('H') - 8) * 40) + round(date('i') / 60 * 40)) . 'px"></div>';
+				echo '<div class="time-hr" style="top: ' . (((date('H') - 8) * 40) + round(date('i') / 60 * 40)) . 'px"></div>';
 			}
 
 			foreach ($this->results as $r)
@@ -58,12 +71,17 @@ class WeekDay extends CWidget
 				/* @var $r ASA */
 				if ($r->day == date('j', $dates[$day]) and $r->month == date('n', $dates[$day]) and $r->year == date('Y', $dates[$day]))
 				{
-					echo '<div class="project" style="' .
-					(!empty($r->project0->color) ? 'background-color: ' . $r->project0->color . ';' : '' ) .
-					' height: ' . ($r->hours * 40) . 'px;' .
-					' top: ' . (($r->from - 8) * 40) . 'px">' .
-					CHtml::link($r->project0->name, array('asa/update', 'id' => $r->id)) .
-					'</div>';
+					$css = 'top: ' . (($r->from - 8) * 40 + 2) . 'px;';
+
+					echo '<div class="project" style="height: ' . ($r->hours * 40 - 4) . 'px; ' . $css .
+					(!empty($r->project0->color) ? ' background-color: ' . $r->project0->color . ';' : '' ) .
+					'">';
+					echo $r->hours . 'h';
+					echo '</div>';
+
+					echo '<div class="project-name" style="' . $css . '">';
+					echo CHtml::link($r->project0->name, array('asa/update', 'id' => $r->id));
+					echo '</div>';
 				}
 			}
 
@@ -73,8 +91,6 @@ class WeekDay extends CWidget
 				echo '<div class="small time">' . $h . ':00</div>';
 				echo '</div>';
 			}
-
-			echo CHtml::link('+ Add', array('report/create', 'day' => date('j', $dates[$day]), 'month' => date('n', $dates[$day]), 'year' => date('Y', $dates[$day])));
 
 			echo '</div>';
 			echo '</td>';

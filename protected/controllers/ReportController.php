@@ -3,6 +3,12 @@
 class ReportController extends Controller
 {
 
+	public function actionIndex()
+	{
+		$this->layout = '//layouts/column2';
+		$this->render('index');
+	}
+
 	public function actionCreate($day = null, $month = null, $year = null)
 	{
 		$model = new Asa;
@@ -12,9 +18,8 @@ class ReportController extends Controller
 		$model->year = ($year == null) ? date('Y') : $year;
 		$model->week = date('W');
 		$model->user = Yii::app()->user->id;
-		
-//		var_dump(Yii::app()->user->name);
 
+//		var_dump(Yii::app()->user->name);
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -30,6 +35,7 @@ class ReportController extends Controller
 		));
 	}
 
+	/* remove ? */
 	public function actionEdit()
 	{
 		$this->render('edit');
@@ -38,11 +44,6 @@ class ReportController extends Controller
 	public function actionHolidays()
 	{
 		$this->render('holidays');
-	}
-
-	public function actionIndex()
-	{
-		$this->render('index');
 	}
 
 	public function actionUpdate()
