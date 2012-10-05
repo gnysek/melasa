@@ -4,15 +4,23 @@ class WeekDay extends CWidget
 {
 
 	public $days = 5;
-	public $week = 1;
+	public $week = 0;
 	public $year = 2012;
 	public $results = array();
 
 	public function __construct($owner = null)
 	{
 		parent::__construct($owner);
-		$this->week = date('W');
+//		$this->week = date('W');
 		$this->year = date('Y');
+	}
+
+	public function init()
+	{
+		if (empty($this->week))
+		{
+			$this->week = date('W');
+		}
 	}
 
 	public function run()
@@ -25,6 +33,15 @@ class WeekDay extends CWidget
 		{
 			$this->results = ASA::model()->findAll('week = :week', array('week' => date($this->week)));
 		}
+
+		echo '<div class="row">';
+		echo '<div class="ten columns center">';
+		echo CHtml::link('&laquo; Prev', array('/report', 'week' => $this->week - 1), array('class' => 'left'));
+		echo CHtml::link('Next &raquo;', array('/report', 'week' => $this->week + 1), array('class' => 'right'));
+		echo CHtml::link('Current', array('/report'), array('style' => 'text-align: center;'));
+		echo '</div>';
+		echo '</div>';
+		echo '<br />';
 
 		echo '<table style="width: 100%;">';
 		echo '<thead>';
@@ -39,7 +56,7 @@ class WeekDay extends CWidget
 				$date = '<u>' . $date . '</u>';
 				$today = $day;
 			}
-			echo '<th>';
+			echo '<th class="center">';
 			echo $date;
 			echo '</th>';
 		}

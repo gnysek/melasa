@@ -16,7 +16,7 @@
  *
  * The followings are the available model relations:
  * @property Projects $project0
- * @property Users $user0
+ * @property User $user0
  */
 class Asa extends CActiveRecord
 {
@@ -63,7 +63,7 @@ class Asa extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'project0' => array(self::BELONGS_TO, 'Projects', 'project'),
-			'user0' => array(self::BELONGS_TO, 'Users', 'user'),
+			'user0' => array(self::BELONGS_TO, 'User', 'user'),
 		);
 	}
 

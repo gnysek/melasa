@@ -3,10 +3,14 @@
 class ReportController extends Controller
 {
 
-	public function actionIndex()
+	public function actionIndex($week = 0)
 	{
+		if (empty($week))
+		{
+			$week = date('W');
+		}
 		$this->layout = '//layouts/column2';
-		$this->render('index');
+		$this->render('index', array('week' => $week % 53));
 	}
 
 	public function actionCreate($day = null, $month = null, $year = null)
@@ -36,6 +40,7 @@ class ReportController extends Controller
 	}
 
 	/* remove ? */
+
 	public function actionEdit()
 	{
 		$this->render('edit');

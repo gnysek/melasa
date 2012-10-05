@@ -58,8 +58,8 @@
 			</ul>
 			<section>
 				<ul class="left">
-					<li class="active"><a href="<?= CHtml::normalizeUrl(array('/site')) ?>">Week view</a></li>
-					<li class="has-dropdown">
+					<li<?= (Yii::app()->controller->id == 'report') ?  ' class="active"' : ''?>><a href="<?= CHtml::normalizeUrl(array('/report')) ?>">Week view</a></li>
+					<li class="has-dropdown<?= (Yii::app()->controller->id == 'projects') ?  ' active' : ''?>">
 						<a href="#">Projects CRUD</a>
 						
 						<ul class="dropdown">
@@ -68,7 +68,7 @@
 							<li><a href="<?= CHtml::normalizeUrl(array('/projects/admin')) ?>">Admin</a></li>
 						</ul>
 					</li>
-					<li class="has-dropdown">
+					<li class="has-dropdown<?= (Yii::app()->controller->id == 'asa') ?  ' active' : ''?>">
 						<a href="#">ASA CRUD</a>
 
 						<ul class="dropdown">
@@ -77,6 +77,9 @@
 							<li><a href="<?= CHtml::normalizeUrl(array('/asa/admin')) ?>">Admin</a></li>
 						</ul>
 					</li>
+					<li<?= (!empty(Yii::app()->controller->module) and Yii::app()->controller->module->id == 'user') ?  ' class="active"' : ''?>><a href="<?= CHtml::normalizeUrl(array('/user')) ?>">Profile</a></li>
+					<!--<li><a><?= Yii::app()->controller->id ?></a></li>-->
+					<!--<li><a><?= Yii::app()->controller->action->id ?></a></li>-->
 					<?php if (Yii::app()->user->isGuest): ?>
 						<li><a href="<?= CHtml::normalizeUrl(Yii::app()->user->loginUrl) ?>">Login</a></li>
 					<?php else: ?>
@@ -85,7 +88,7 @@
 				</ul>
 			</section>
 		</nav>
-
+		
 		<?php /*
 		  <div id="mainmenu">
 		  $this->widget('zii.widgets.CMenu', array(
