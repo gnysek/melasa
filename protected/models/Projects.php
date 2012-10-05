@@ -7,6 +7,7 @@
  * @property integer $id
  * @property string $name
  * @property string $wiki
+ * @property string $color
  *
  * The followings are the available model relations:
  * @property Asa[] $asas
@@ -41,10 +42,11 @@ class Projects extends CActiveRecord
 		return array(
 			array('name', 'required'),
 			array('name', 'length', 'max'=>10),
+			array('color', 'length', 'max'=>32),
 			array('wiki', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, wiki', 'safe', 'on'=>'search'),
+			array('id, name, wiki, color', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +71,7 @@ class Projects extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Name',
 			'wiki' => 'Wiki',
+			'color' => 'Color',
 		);
 	}
 
@@ -86,6 +89,7 @@ class Projects extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('wiki',$this->wiki,true);
+		$criteria->compare('color',$this->color,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

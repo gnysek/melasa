@@ -1,11 +1,15 @@
 .small{font-size: 10px;}
-.day-td{padding: 0px; position: relative;}
+.day-td{padding: 0px;}
 .day-td .small{color: black;}
-.hour{display: block; height: 40px; border-bottom: 1px dashed #ccc; position:relative;}
+.day-relative{position: relative;}
+.hour{display: block; height: 40px; border-bottom: 1px dashed #ccc; /*position:relative;*/}
 .hour:last-child{border: none;}
 .hour .time {
 	display: absolute;
 }
+.errorSummary{color: red;}
+.errorSummary p,.errorSummary li {font-size: 11px;}
+.errorSummary p {margin-bottom: 0px;}
 .hour:hover{
 	background-image: url('foundation/images/foundation/orbit/bullets.jpg');
 	background-repeat: no-repeat;
@@ -20,4 +24,11 @@
 	right: 0px;
 	padding: 1px 5px 0 0;
 	font-size: 11px;
+	opacity: 0.8;
+}
+.project a{
+	color: black;
+}
+.project a:hover {
+	color: blue;
 }

@@ -42,6 +42,7 @@
 		<script type="text/javascript">
 			$().ready(function(){
 				$(document).foundationTopBar();
+				$(document).foundationCustomForms();
 			});
 		</script>
 	</head>
@@ -77,9 +78,9 @@
 						</ul>
 					</li>
 					<?php if (Yii::app()->user->isGuest): ?>
-						<li><a href="<?= CHtml::normalizeUrl(array('/site/login')) ?>">Login</a></li>
+						<li><a href="<?= CHtml::normalizeUrl(Yii::app()->user->loginUrl) ?>">Login</a></li>
 					<?php else: ?>
-						<li><a href="<?= CHtml::normalizeUrl(array('/site/logout')) ?>">Logout (<?= Yii::app()->user->name ?>)</a></li>
+						<li><a href="<?= CHtml::normalizeUrl('/user/logout') ?>">Logout (<?= Yii::app()->user->name ?>)</a></li>
 					<?php endif; ?>
 				</ul>
 			</section>

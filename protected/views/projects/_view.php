@@ -16,7 +16,12 @@ $md = new CMarkdown();
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('wiki')); ?>:</b>
 	<?php echo $md->transform($data->wiki); ?>
-	<hr />
+	<br />
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('color')); ?>:</b>
+	<?php echo CHtml::encode($data->color); ?>
+	<br />
 
+	<hr />
 
 </div>

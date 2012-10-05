@@ -26,6 +26,11 @@
 		<?php echo $form->textArea($model,'wiki',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'color'); ?>
+		<?php echo $form->textField($model,'color',array('size'=>32,'maxlength'=>32)); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>
