@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 04 Paź 2012, 14:54
+-- Czas wygenerowania: 05 Paź 2012, 16:27
 -- Wersja serwera: 5.5.24-log
 -- Wersja PHP: 5.3.13
 
@@ -33,14 +33,18 @@ CREATE TABLE IF NOT EXISTS `asa` (
   PRIMARY KEY (`id`),
   KEY `project` (`project`),
   KEY `user` (`user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=8 ;
 
 --
 -- Zrzut danych tabeli `asa`
 --
 
 INSERT INTO `asa` (`id`, `day`, `month`, `year`, `week`, `hours`, `from`, `project`, `user`) VALUES
-(1, 3, 10, 2012, 0, 8, 9, 1, 1);
+(1, 3, 10, 2012, 40, 8, 9, 1, 1),
+(2, 1, 10, 2012, 40, 3, 11, 1, 1),
+(3, 4, 10, 2012, 40, 8, 8, 2, 1),
+(5, 5, 10, 2012, 40, 3, 13, 2, 1),
+(7, 5, 10, 2012, 40, 5, 8, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -110,15 +114,17 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) COLLATE utf8_bin NOT NULL,
   `wiki` text COLLATE utf8_bin,
+  `color` varchar(32) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 --
 -- Zrzut danych tabeli `projects`
 --
 
-INSERT INTO `projects` (`id`, `name`, `wiki`) VALUES
-(1, 'Croire', 'To jest pierwszy akapit.\r\nA to drugi.\r\n\r\nA to trzeci.\r\n\r\n*emfaza* **mocna emfaza**\r\n\r\n`kod`\r\n\r\n test\r\n\r\n* Pierwszy element listy.\r\n* Drugi.	\r\n\r\nNagłówek pierwszego poziomu\r\n===========================\r\n\r\nNagłówek drugiego poziomu\r\n-------------------------\r\n\r\n> Cytat');
+INSERT INTO `projects` (`id`, `name`, `wiki`, `color`) VALUES
+(1, 'Croire', 'To jest pierwszy akapit.\r\nA to drugi.\r\n\r\nA to trzeci.\r\n\r\n*emfaza* **mocna emfaza**\r\n\r\n`kod`\r\n\r\n test\r\n\r\n* Pierwszy element listy.\r\n* Drugi.	\r\n\r\nNagłówek pierwszego poziomu\r\n===========================\r\n\r\nNagłówek drugiego poziomu\r\n-------------------------\r\n\r\n> Cytat\r\n\r\n    printf("goodbye world!");  /* his suicide note\r\n                                  was in C */\r\ncostam\r\n    <blink>\r\n       You would hate this if it weren''t\r\n       wrapped in a code block.\r\n    </blink>\r\n\r\nbah bah\r\n\r\n~~~\r\nprintf("goodbye world!");  /* his suicide note\r\n                              was in C */\r\n~~~\r\n\r\nxxx\r\n\r\n~~~\r\n[php]\r\necho ''hello world'';\r\n~~~\r\n\r\nPress the `<Tab>` key, then type a `$`.\r\n\r\nHow do I love thee?  \r\nLet me count the ways\r\n\r\n*This is italicized*, and so is _this_.\r\n**This is bold**, and so is __this__.\r\nUse ***italics and bold together*** if you ___have to___.\r\n\r\n\r\nHere''s an inline link to [Google](http://www.google.com/).\r\nHere''s a reference-style link to [Google][1].\r\nHere''s a very readable link to [Yahoo!][yahoo].\r\n\r\n[1]: http://www.google.com/\r\n[yahoo]: http://www.yahoo.com/\r\n\r\nHeader 1\r\n========\r\n\r\nHeader 2\r\n--------\r\n\r\n- Use a minus sign for a bullet\r\n+ Or plus sign\r\n* Or an asterisk\r\n\r\n1. Numbered lists are easy\r\n2. Markdown keeps track of the numbers for you\r\n7. So this will be item 3.\r\n\r\n- This list gets wrapped in <p> tags\r\n\r\n \r\n- So there will be extra space between items\r\n\r\n\r\n> The syntax is based on the way email programs\r\n> usually do quotations. You don''t need to hard-wrap\r\n> the paragraphs in your blockquotes, but it looks much nicer if you do.  Depends how lazy you feel.', 'plum'),
+(2, 'Internal', '', 'tomato');
 
 -- --------------------------------------------------------
 
@@ -148,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `activkey`, `createtime`, `lastvisit`, `superuser`, `status`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', 1261146094, 0, 1, 1),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'webmaster@example.com', '9a24eff8c15a6a141ece27eb6947da0f', 1261146094, 1349430183, 1, 1),
 (2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', 1261146096, 0, 0, 1);
 
 --
