@@ -41,12 +41,11 @@ for ($i = 8; $i < 17; $i++)
 <?php echo $form->labelEx($model, 'project'); ?>
 <?php
 echo CHtml::dropDownList(
-		'Asa[project]', (!empty($model->project)) ? $model->project : 0, CHtml::listData(Projects::model()->findAll(), 'id', 'name')
+		'Asa[project]', 0, CHtml::listData(Projects::model()->findAll(), 'id', 'name')
 );
 ?>
 <?php echo $form->error($model, 'project'); ?>
 
-<?php if (empty($model->user)) $model->user = Yii::app()->user->id; ?>
 <?php echo $form->hiddenField($model, 'user'); ?>
 
 <div class="row buttons">

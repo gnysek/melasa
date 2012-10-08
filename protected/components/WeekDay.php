@@ -98,11 +98,11 @@ class WeekDay extends CWidget
 					echo '<div class="project" style="height: ' . ($r->hours * 40 - 4) . 'px; ' . $css .
 					(!empty($r->project0->color) ? ' background-color: ' . $r->project0->color . ';' : '' ) .
 					'">';
-					echo $r->hours . 'h';
+					echo $r->hours . 'h, ' . $r->from . ':00 - ' . ($r->from + $r->hours) . ':00';
 					echo '</div>';
 
 					echo '<div class="project-name" style="' . $css . '">';
-					echo CHtml::link($r->project0->name, array('asa/update', 'id' => $r->id));
+					echo CHtml::link($r->project0->name, array('report/update', 'id' => $r->id));
 					echo '</div>';
 				}
 			}
@@ -123,14 +123,20 @@ class WeekDay extends CWidget
 
 		echo $nav . '<br/>';
 
-		echo '<script type="text/javascript">';
-		echo 'function addWD(day,month,year) {';
-		echo '	$("#Asa_day").val(day);';
-		echo '	$("#Asa_month").val(month);';
-		echo '	$("#Asa_year").val(year);';
-		echo '	$(\'#myModal\').reveal();';
-		echo '}';
-		echo '</script>';
+		echo '<script type="text/javascript">' . PHP_EOL;
+		echo 'function addWD(day,month,year) {' . PHP_EOL;
+		echo '	$("#Asa_day").val(day);' . PHP_EOL;
+		echo '	$("#Asa_month").val(month);' . PHP_EOL;
+		echo '	$("#Asa_year").val(year);' . PHP_EOL;
+		echo '	$(\'#myModal\').reveal();' . PHP_EOL;
+		echo '}' . PHP_EOL;
+		echo 'setInterval( function(){' . PHP_EOL;
+		echo '	var d = new Date();' . PHP_EOL;
+		echo '	if (d.getHours() > 7 && d.getHours() < 20) {' . PHP_EOL;
+		echo '		$(".time-hr").css("top",((d.getHours()-8)*40)+Math.round((d.getMinutes()/60)*40)+"px");' . PHP_EOL;
+		echo '	}' . PHP_EOL;
+		echo '}, 10000);' . PHP_EOL;
+		echo '</script>' . PHP_EOL;
 	}
 
 }

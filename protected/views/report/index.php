@@ -27,6 +27,6 @@ $this->widget('WeekDay', array('week' => $week));
 ?>
 
 <div id="myModal" class="reveal-modal expand">
-	<p><?php echo $this->renderPartial('_fastform', array('model' => new ASA(), 'week' => $week)); ?></p>
+	<p><?php echo $this->renderPartial('_fastform', array('model' => $model, 'week' => $week)); ?></p>
 	<a class="close-reveal-modal">&times;</a>
 </div>

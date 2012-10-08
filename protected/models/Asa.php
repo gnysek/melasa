@@ -110,4 +110,14 @@ class Asa extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function init() {
+		$this->day = date('j');
+		$this->month = date('n');
+		$this->year = date('Y');
+		$this->week = date('W');
+		$this->user = Yii::app()->user->id;
+		$this->hours = 8;
+		$this->from = 9;
+	}
 }
