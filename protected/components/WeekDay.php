@@ -34,14 +34,16 @@ class WeekDay extends CWidget
 			$this->results = ASA::model()->findAll('week = :week', array('week' => date($this->week)));
 		}
 
-		echo '<div class="row">';
-		echo '<div class="ten columns center">';
-		echo CHtml::link('&laquo; Prev', array('/report', 'week' => $this->week - 1), array('class' => 'left'));
-		echo CHtml::link('Next &raquo;', array('/report', 'week' => $this->week + 1), array('class' => 'right'));
-		echo CHtml::link('Current', array('/report'), array('style' => 'text-align: center;'));
-		echo '</div>';
-		echo '</div>';
-		echo '<br />';
+		$nav = '';
+		$nav .= '<div class="row">';
+		$nav .= '<div class="ten columns center">';
+		$nav .= CHtml::link('&laquo; Prev', array('/report', 'week' => $this->week - 1), array('class' => 'left button tiny secondary'));
+		$nav .= CHtml::link('Next &raquo;', array('/report', 'week' => $this->week + 1), array('class' => 'right button tiny secondary'));
+		$nav .= CHtml::link('Current', array('/report'), array('style' => 'text-align: center;', 'class' => 'button tiny secondary'));
+		$nav .= '</div>';
+		$nav .= '</div>';
+
+		echo $nav . '<br/>';
 
 		echo '<table style="width: 100%;">';
 		echo '<thead>';
@@ -64,14 +66,17 @@ class WeekDay extends CWidget
 		echo '</tr>';
 		echo '</thead>';
 		echo '<tbody>';
+
 		echo '<tr>';
 		for ($day = 0; $day < $this->days; $day++)
 		{
-			echo '<td class="small" style="padding: 1px;">';
-			echo CHtml::link('+ Add', array('report/create', 'day' => date('j', $dates[$day]), 'month' => date('n', $dates[$day]), 'year' => date('Y', $dates[$day])));
+			echo '<td class="center" style="padding: 1px;">';
+			//echo CHtml::link('+ Add', array('report/create', 'day' => date('j', $dates[$day]), 'month' => date('n', $dates[$day]), 'year' => date('Y', $dates[$day])), array('class' => 'button tiny'));
+			echo '<a class="button primary tiny" onclick="addWD(' . date('j', $dates[$day]) . ', ' . date('n', $dates[$day]) . ',' . date('Y', $dates[$day]) . ');">+ Add</a>';
 			echo '</td>';
 		}
 		echo '</tr>';
+
 		echo '<tr>';
 		for ($day = 0; $day < $this->days; $day++)
 		{
@@ -115,6 +120,17 @@ class WeekDay extends CWidget
 		echo '</tr>';
 		echo '</tbody>';
 		echo '</table>';
+
+		echo $nav . '<br/>';
+
+		echo '<script type="text/javascript">';
+		echo 'function addWD(day,month,year) {';
+		echo '	$("#Asa_day").val(day);';
+		echo '	$("#Asa_month").val(month);';
+		echo '	$("#Asa_year").val(year);';
+		echo '	$(\'#myModal\').reveal();';
+		echo '}';
+		echo '</script>';
 	}
 
 }

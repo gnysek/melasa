@@ -1,3 +1,4 @@
+<!--<a data-reveal-id="myModal" class="button primary">tes</a>-->
 <?php
 /* @var $this ReportController */
 //$this->pageTitle=Yii::app()->name;
@@ -24,3 +25,8 @@ $this->breadcrumbs = array(
 <?php
 $this->widget('WeekDay', array('week' => $week));
 ?>
+
+<div id="myModal" class="reveal-modal expand">
+	<p><?php echo $this->renderPartial('_fastform', array('model' => new ASA(), 'week' => $week)); ?></p>
+	<a class="close-reveal-modal">&times;</a>
+</div>

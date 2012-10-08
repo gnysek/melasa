@@ -7,12 +7,14 @@ $this->breadcrumbs = array(
 	'Create',
 );
 
-/*$this->menu = array(
-	array('label' => 'List Asa', 'url' => array('index')),
-	array('label' => 'Manage Asa', 'url' => array('admin')),
-);*/
+/* $this->menu = array(
+  array('label' => 'List Asa', 'url' => array('index')),
+  array('label' => 'Manage Asa', 'url' => array('admin')),
+  ); */
 ?>
 
 <h1>Report time</h1>
 
-<?php echo $this->renderPartial('//asa/_form', array('model' => $model)); ?>
+<div class="four columns">
+	<?php echo $this->renderPartial('_form', array('model' => $model)); ?>
+</div>

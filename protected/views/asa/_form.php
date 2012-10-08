@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="four columns">
+<div>
 
 	<?php
 	$form = $this->beginWidget('ActiveForm', array(
