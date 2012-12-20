@@ -63,7 +63,7 @@ class AsaController extends Controller
 	public function actionCreate()
 	{
 		$model=new Asa;
-
+		
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
