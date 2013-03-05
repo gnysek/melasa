@@ -28,7 +28,7 @@ class ProjectsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','wiki'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -55,6 +55,12 @@ class ProjectsController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+
+    public function actionWiki($id) {
+        $this->render('wiki',array(
+              'model'=>$this->loadModel($id),
+         ));
+    }
 
 	/**
 	 * Creates a new model.

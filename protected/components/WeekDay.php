@@ -28,17 +28,24 @@ class WeekDay extends CWidget
 		$time = strtotime($this->year . '-W' . sprintf("%02d", $this->week) . '-1');
 		$today = -1;
 		$dates = array();
+        $totalHours = array();
 
 		if (empty($this->results))
 		{
 			$this->results = ASA::model()->findAll('week = :week', array('week' => date($this->week)));
 		}
 
+        $prevWeek = date('W', strtotime('-1 week', $time));
+        $prevYear = ($prevWeek > $this->week) ? $this->year - 1 : $this->year;
+
+        $nextWeek = date('W', strtotime('+1 week', $time));
+        $nextYear = ($nextWeek < $this->week) ? $this->year + 1 : $this->year;
+
 		$nav = '';
 		$nav .= '<div class="row">';
 		$nav .= '<div class="ten columns center">';
-		$nav .= CHtml::link('&laquo; Prev', array('/report', 'week' => $this->week - 1), array('class' => 'left button tiny secondary'));
-		$nav .= CHtml::link('Next &raquo;', array('/report', 'week' => $this->week + 1), array('class' => 'right button tiny secondary'));
+		$nav .= CHtml::link('&laquo; Prev', array('/report', 'week' => $prevWeek, 'year' => $prevYear), array('class' => 'left button tiny secondary'));
+		$nav .= CHtml::link('Next &raquo;', array('/report', 'week' => $nextWeek, 'year' => $nextYear), array('class' => 'right button tiny secondary'));
 		$nav .= CHtml::link('Current', array('/report'), array('style' => 'text-align: center;', 'class' => 'button tiny secondary'));
 		$nav .= '</div>';
 		$nav .= '</div>';
@@ -52,13 +59,14 @@ class WeekDay extends CWidget
 		{
 			$dates[$day] = strtotime('+ ' . $day . ' day', $time);
 			$date = date('D d M y', $dates[$day]);
+            $totalHours[$day] = 0;
 
 			if ($date == date('D d M y'))
 			{
 				$date = '<u>' . $date . '</u>';
 				$today = $day;
 			}
-			echo '<th class="center">';
+			echo '<th class="center" style="width: 20%">';
 			echo $date;
 			echo '</th>';
 		}
@@ -78,6 +86,7 @@ class WeekDay extends CWidget
 		echo '</tr>';
 
 		echo '<tr>';
+
 		for ($day = 0; $day < $this->days; $day++)
 		{
 			echo '<td class="day-td">';
@@ -104,6 +113,8 @@ class WeekDay extends CWidget
 					echo '<div class="project-name" style="' . $css . '">';
 					echo CHtml::link($r->project0->name, array('report/update', 'id' => $r->id));
 					echo '</div>';
+
+                    $totalHours[$day] += $r->hours;
 				}
 			}
 
@@ -117,8 +128,19 @@ class WeekDay extends CWidget
 			echo '</div>';
 			echo '</td>';
 		}
-		echo '</tr>';
-		echo '</tbody>';
+
+        echo '</tr>';
+        echo '<tr>';
+
+        for ($day = 0; $day < $this->days; $day++)
+        {
+            echo '<td class="day-td">';
+            echo '=' . $totalHours[$day] . 'h';
+            echo '</td>';
+        }
+
+        echo '</tr>';
+        echo '</tbody>';
 		echo '</table>';
 
 		echo $nav . '<br/>';

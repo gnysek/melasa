@@ -14,7 +14,7 @@ $this->menu = array(
 );
 
 $this->breadcrumbs = array(
-	'Week view for week ' . $week,
+	'Week view for week ' . $week . ' / ' . $year,
 );
 ?>
 
@@ -23,7 +23,7 @@ $this->breadcrumbs = array(
 </div>
 
 <?php
-$this->widget('WeekDay', array('week' => $week));
+$this->widget('WeekDay', array('week' => $week, 'year' => $year));
 ?>
 
 <div id="myModal" class="reveal-modal expand">

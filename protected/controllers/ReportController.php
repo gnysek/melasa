@@ -2,13 +2,46 @@
 
 class ReportController extends Controller
 {
+    /**
+     * @return array action filters
+     */
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            #'postOnly + delete', // we only allow deletion via POST request
+        );
+    }
 
-	public function actionIndex($week = 0)
+    public function accessRules()
+    {
+        return array(
+            array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                  'actions'=>array('index','create','edit','holidays','update'),
+                  'users'=>array('@'),
+            ),
+            array('deny',  // deny all users
+                  'users'=>array('*'),
+            ),
+        );
+    }
+
+	public function actionIndex($week = 0, $year = null)
 	{
 		if (empty($week))
 		{
 			$week = date('W');
 		}
+        if ($year === null) {
+            $year = date('Y');
+        }
+
+        if ($year < 2012) {
+            $this->render('2011',array('week' => $week % 53, 'year' => $year));
+            return;
+            //throw new CHttpException(403, 'Only years after 2011 are available.<br/>' . CHtml::link('Back',array('report','year'=>'2012','week'=>1)));
+        }
+
 		$model = new Asa();
 
 //		$model->day = date('j');
@@ -19,7 +52,7 @@ class ReportController extends Controller
 //		$model->hours = 8;
 
 		$this->layout = '//layouts/column2';
-		$this->render('index', array('week' => $week % 53, 'model' => $model));
+		$this->render('index', array('week' => $week % 53, 'year' => $year, 'model' => $model));
 	}
 
 	public function actionCreate($day = null, $month = null, $year = null)

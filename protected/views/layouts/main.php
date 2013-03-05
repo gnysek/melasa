@@ -61,7 +61,7 @@
 					<li<?= (Yii::app()->controller->id == 'report') ?  ' class="active"' : ''?>><a href="<?= CHtml::normalizeUrl(array('/report')) ?>">Week view</a></li>
 					<li class="has-dropdown<?= (Yii::app()->controller->id == 'projects') ?  ' active' : ''?>">
 						<a href="#">Projects CRUD</a>
-						
+
 						<ul class="dropdown">
 							<li><a href="<?= CHtml::normalizeUrl(array('/projects')) ?>">View</a></li>
 							<li><a href="<?= CHtml::normalizeUrl(array('/projects/create')) ?>">Create</a></li>
@@ -77,18 +77,18 @@
 							<li><a href="<?= CHtml::normalizeUrl(array('/asa/admin')) ?>">Admin</a></li>
 						</ul>
 					</li>
-					<li<?= (!empty(Yii::app()->controller->module) and Yii::app()->controller->module->id == 'user') ?  ' class="active"' : ''?>><a href="<?= CHtml::normalizeUrl(array('/user')) ?>">Profile</a></li>
+					<li<?= (!empty(Yii::app()->controller->module) and Yii::app()->controller->module->id == 'user') ?  ' class="active"' : ''?>><a href="<?= CHtml::normalizeUrl(array('/user/profile')) ?>">Profile</a></li>
 					<!--<li><a><?= Yii::app()->controller->id ?></a></li>-->
 					<!--<li><a><?= Yii::app()->controller->action->id ?></a></li>-->
 					<?php if (Yii::app()->user->isGuest): ?>
 						<li><a href="<?= CHtml::normalizeUrl(Yii::app()->user->loginUrl) ?>">Login</a></li>
 					<?php else: ?>
-						<li><a href="<?= CHtml::normalizeUrl('/user/logout') ?>">Logout (<?= Yii::app()->user->name ?>)</a></li>
+						<li><a href="<?= CHtml::normalizeUrl(array('/user/logout')) ?>">Logout (<?= Yii::app()->user->name ?>)</a></li>
 					<?php endif; ?>
 				</ul>
 			</section>
 		</nav>
-		
+
 		<?php /*
 		  <div id="mainmenu">
 		  $this->widget('zii.widgets.CMenu', array(
@@ -125,10 +125,15 @@
 		<div class="row">
 			<hr/>
 			<div class="ten columns">
-				<p>Copyright &copy; <?php echo date('Y'); ?> by gnysek.pl. All Rights Reserved.<br/><?php echo Yii::powered(); ?>
+				<p>Copyright &copy; <?php echo date('Y'); ?> by gnysek.pl. All Rights
+					Reserved.<br/><?php echo Yii::powered(); ?>
 				</p>
-			</div><!-- footer -->
+
+				<p>ExecutionTime: <?=round(Yii::getLogger()->executionTime, 3); ?>s;
+					MemoryUsage: <?=round(Yii::getLogger()->memoryUsage / 1024 / 1024, 3) . " MB"; ?>;</p>
+			</div>
+			<!-- footer -->
 		</div>
-		
+
 	</body>
 </html>
